@@ -4,6 +4,7 @@ import SectionContainer from '@/components/SectionContainer'
 import { BlogSeo } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetdata from '@/data/siteMetadata'
+import Subscribe from '../components/Subscribe'
 
 const editUrl = (fileName) => `${siteMetdata.siteRepo}/blob/master/data/blog/${fileName}`
 const discussUrl = (slug) =>
@@ -45,7 +46,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
               <dd>
                 <ul className="flex justify-center space-x-8 xl:block sm:space-x-12 xl:space-x-0 xl:space-y-8">
                   <li className="flex items-center space-x-2">
-                    <img src={siteMetdata.image} alt="avatar" className="w-10 h-10 rounded-full" />
+                    <img src={siteMetdata.image} alt="avatar" className="w-10 h-10" />
                     <dl className="text-sm font-medium leading-5 whitespace-nowrap">
                       <dt className="sr-only">Name</dt>
                       <dd className="text-gray-900 dark:text-gray-100">{siteMetdata.author}</dd>
@@ -65,6 +66,9 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
             </dl>
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
               <div className="pt-10 pb-8 prose dark:prose-dark max-w-none">{children}</div>
+              <div className="mt-8">
+          <Subscribe />
+        </div>
               <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(slug)} rel="nofollow">
                   {'Discuss on Twitter'}
