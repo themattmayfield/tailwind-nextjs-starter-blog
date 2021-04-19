@@ -38,21 +38,21 @@ export default function WorkoutCard(props) {
                   <div className="relative grid gap-8 bg-white p-7">
                     {props.solutions.map((item) => (
                       <div
-                        key={item.name}                        
+                        key={item.id}                        
                         className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                       >
                        
                         <div className="ml-4">
-                          <p className="text-sm font-medium text-gray-900">
+                          <p className="no-margin text-sm font-medium text-gray-900">
                             {item.name}
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="no-margin text-sm text-gray-500">
                             {item.description}
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="no-margin text-sm text-gray-500">
                             {item.reps}
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="no-margin text-sm text-gray-500">
                             {item.tempo}
                           </p>
                         </div>
@@ -60,18 +60,13 @@ export default function WorkoutCard(props) {
                     ))}
                   </div>
                   <div className="p-4 bg-gray-50">
+                  
                     <a
                       href="##"
                       className="flow-root px-2 py-2 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                     >
-                      <span className="flex items-center">
-                        <span className="text-sm font-medium text-gray-900">
-                          Documentation
-                        </span>
-                      </span>
-                      <span className="block text-sm text-gray-500">
-                        Start integrating products and tools
-                      </span>
+                      <span className="text-black">Enjoy the workout? </span>
+                      Buy me a ☕
                     </a>
                   </div>
                 </div>

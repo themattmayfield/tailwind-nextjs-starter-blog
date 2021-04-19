@@ -17,3 +17,11 @@
 html {
   scroll-behavior: smooth;
 }
+
+.no-prose {
+  text-decoration: none!important;
+}
+
+.no-margin {
+  margin: 0!important;
+}
