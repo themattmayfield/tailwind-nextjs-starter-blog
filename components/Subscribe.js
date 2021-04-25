@@ -1,24 +1,21 @@
-import { useState, useRef } from 'react';
-import Link from 'next/link';
-import useSWR from 'swr';
-import format from 'comma-number';
-import { trackGoal } from 'fathom-client';
+import React, { useRef, useState } from 'react';
 
-import fetcher from '@/lib/fetcher';
 import SuccessMessage from '@/components/SuccessMessage';
 import ErrorMessage from '@/components/ErrorMessage';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
 export default function Subscribe() {
-  const [form, setForm] = useState(false);
+  // 1. Create a reference to the input so we can fetch/clear it's value.
   const inputEl = useRef(null);
-  const { data } = useSWR('/api/subscribers', fetcher);
-  const subscriberCount = format(data?.count);
+  // 2. Hold a message in state to handle the response from our API.
+  const [message, setMessage] = useState('');
+  const [form, setForm] = useState(false);
 
   const subscribe = async (e) => {
     e.preventDefault();
     setForm({ state: 'loading' });
 
+    // 3. Send a request to our API with the user's email address.
     const res = await fetch('/api/subscribe', {
       body: JSON.stringify({
         email: inputEl.current.value
@@ -30,21 +27,25 @@ export default function Subscribe() {
     });
 
     const { error } = await res.json();
+
     if (error) {
+      // 4. If there was an error, update the message in state.
       setForm({
         state: 'error',
         message: error
       });
+
       return;
     }
 
-    trackGoal('JYFUFMSF', 0);
+    // 5. Clear the input value and show a success message.
     inputEl.current.value = '';
     setForm({
       state: 'success',
-      message: `Hooray! You're now on the list.`
+      message: `Success! 🎉 You are now subscribed to the newsletter.`
     });
   };
+
 
   return (
     <div className="border border-blue-200 rounded p-6 my-4 w-full dark:border-gray-800 bg-blue-50 dark:bg-blue-opaque">
@@ -78,10 +79,10 @@ export default function Subscribe() {
         <SuccessMessage>{form.message}</SuccessMessage>
       ) : (
         <p className="text-sm text-gray-800 dark:text-gray-200">
-          {`${subscriberCount || '-'} subscribers – `}
-          <Link href="/newsletter">
+          {/* {`${subscriberCount || '-'} subscribers – `} */}
+          {/* <Link href="/newsletter">
             <a>29 issues</a>
-          </Link>
+          </Link> */}
         </p>
       )}
     </div>
